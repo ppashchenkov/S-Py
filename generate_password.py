@@ -6,7 +6,7 @@ def generate_password(password_lenth):
 
     small_letters = 'abcdefghijkmnpqrstuvwxyz'
     big_letters = 'ABCDEFGHJKLMNPQRSTUVWXYZ'
-    numbers = '0123456789'
+    numbers = '123456789123456789'
     symbols = '!@#$%^&*()_-+~`=:;?,.{}|[]'
     chars = big_letters + small_letters + numbers + symbols
 
