@@ -41,13 +41,15 @@ def generate_password(password_lenth):
     iterations = 1
     password = None
     while True:
-        password = generate_random_string(password_size, chars)
+        random_chars = generate_random_string(len(chars), chars)
+        password = generate_random_string(password_size, random_chars)
         if is_valid(password):
             break
         iterations += 1
 
     print("_________________________________")
     print(f"Количество иттераций = {iterations}")
+    print(f"random_chars = {random_chars}")
     return password
 
 passwd = generate_password(4)
