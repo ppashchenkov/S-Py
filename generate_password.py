@@ -33,12 +33,10 @@ def generate_password(password_lenth):
         return re.search(pattern, text) is not None
 
     def is_valid(str):
-        nu = (re.search(num_pattern, str) is not None)
-        bi = (re.search(big_char_pattern, str) is not None)
-        sm = (re.search(small_char_pattern, str) is not None)
-        sy = (re.search(symbol_pattern, str) is not None)
-
-        return nu and bi and sm and sy
+        return is_exist(num_pattern, str) and \
+            is_exist(big_char_pattern, str) and \
+            is_exist(small_char_pattern, str) and \
+            is_exist(symbol_pattern, str)
 
     iterations = 1
     password = None
