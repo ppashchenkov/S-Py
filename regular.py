@@ -15,3 +15,5 @@ def is_valid(password):
             is_exist(small_char_pattern, password) and \
             is_exist(symbol_pattern, password)
 
+
+print(is_exist(symbol_pattern, "'8~fhV'"))

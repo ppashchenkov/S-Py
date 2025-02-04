@@ -7,7 +7,7 @@ def generate_password(password_lenth):
     small_letters = 'abcdefghijkmnpqrstuvwxyz'
     big_letters = 'ABCDEFGHJKLMNPQRSTUVWXYZ'
     numbers = '123456789123456789'
-    symbols = '!@#$%^&*()_-+~`=:;?,.{}|[]'
+    symbols = '!@#$%^&*()_-+~`=:;?,.{}[]'
     chars = big_letters + small_letters + numbers + symbols
 
     if password_lenth < 5:
@@ -27,16 +27,18 @@ def generate_password(password_lenth):
     num_pattern = r'[0-9]'
     big_char_pattern = r'[A-Z]'
     small_char_pattern = r'[a-z]'
-    symbol_pattern = r'[/!/@/#/$/%/^/&/*/(/)/_/-/+/~/`/=/:/;/?/,/./{/}/|/[/]]'
+    symbol_pattern = r'[/!/@/#/$/%/^/&/*/(/)/_/-/+/~/`/=/:/;?/,/./{/}/|/[/]]'
 
     def is_exist(pattern, text):
         return re.search(pattern, text) is not None
 
     def is_valid(str):
-        return is_exist(num_pattern, str) and \
-            is_exist(big_char_pattern, str) and \
-            is_exist(small_char_pattern, str) and \
-            is_exist(symbol_pattern, str)
+        nu = (re.search(num_pattern, str) is not None)
+        bi = (re.search(big_char_pattern, str) is not None)
+        sm = (re.search(small_char_pattern, str) is not None)
+        sy = (re.search(symbol_pattern, str) is not None)
+
+        return nu and bi and sm and sy
 
     iterations = 1
     password = None
@@ -52,7 +54,7 @@ def generate_password(password_lenth):
     print(f"random_chars = {random_chars}")
     return password
 
-passwd = generate_password(4)
+passwd = generate_password(0)
 
 print("_________________________________")
 print(f"Пароль: {passwd}")
