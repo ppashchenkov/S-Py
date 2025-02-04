@@ -7,11 +7,11 @@ def generate_password(password_lenth):
     small_letters = 'abcdefghijkmnpqrstuvwxyz'
     big_letters = 'ABCDEFGHJKLMNPQRSTUVWXYZ'
     numbers = '123456789123456789'
-    symbols = '!@#$%^&*()_-+~`=:;?,.{}[]'
+    symbols = '!@#$%^&*()!@#$%^&*()'
     chars = big_letters + small_letters + numbers + symbols
 
-    if password_lenth < 5:
-        password_size = 5
+    if password_lenth < 4:
+        password_size = 4
     elif password_lenth > 64:
         password_size = 64
     else:
@@ -27,7 +27,7 @@ def generate_password(password_lenth):
     num_pattern = r'[0-9]'
     big_char_pattern = r'[A-Z]'
     small_char_pattern = r'[a-z]'
-    symbol_pattern = r'[/!/@/#/$/%/^/&/*/(/)/_/-/+/~/`/=/:/;?/,/./{/}/|/[/]]'
+    symbol_pattern = r'[/!/@/#/$/%/^/&/*/(/)]'
 
     def is_exist(pattern, text):
         return re.search(pattern, text) is not None
