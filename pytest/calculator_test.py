@@ -1,0 +1,80 @@
+from calculator import Calculator
+import pytest
+
+
+calc = Calculator()
+
+@pytest.mark.parametrize(
+    "a, b, expected",
+    [
+        (5, 7, 12),
+        (0, -7, -7),
+        (-10, 7, -3),
+        (99, -9, 90)
+    ])
+def test_sum(a, b, expected):
+    assert calc.sum(a, b) == expected
+
+@pytest.mark.parametrize(
+    "a, b, expected",
+    [
+        (5, 7, -2),
+        (0, -7, 7),
+        (-10, 7, -17),
+        (99, -9, 108)
+    ])
+def test_sub(a, b, expected):
+    assert calc.sub(a, b) == expected
+
+@pytest.mark.parametrize(
+    "a, b, expected",
+    [
+        (5, 7, 35),
+        (0, -7, 0),
+        (-10, 7, -70),
+        (99, -9, -891)
+    ])
+def test_mult(a, b, expected):
+    assert calc.mult(a, b) == expected
+
+@pytest.mark.parametrize(
+    "a, b, expected",
+    [
+        (5, 2, 25),
+        (5, 3, 125),
+        (-10, 0, 1),
+        (2, -1, 0.5),
+        (4, -2, 0.0625)
+    ])
+def test_power(a, b, expected):
+    assert calc.power(a, b) == expected
+
+@pytest.mark.parametrize(
+    "a, b, expected",
+    [
+        (14, 7, 2),
+        (0, -7, 0),
+        (-7, 7, -1),
+        (99, -9, -11)
+    ])
+def test_div(a, b, expected):
+    assert calc.div(a, b) == expected
+
+@pytest.mark.xfail(raises=ArithmeticError)
+def test_div_on_zero():
+    assert calc.div(5, 0) == 5
+
+@pytest.mark.parametrize(
+    "nums, expected",
+    [
+        ([], 0),
+        ([2,2,3,5], 3),
+        ([0, 8], 4),
+        ([5], 5)
+    ])
+def test_avr(nums, expected):
+    assert calc.avr(nums) == expected
+
+@pytest.mark.xfail(raises=Exception)
+def test_avr_nums_strings():
+    assert calc.avr(['w']) == 1
