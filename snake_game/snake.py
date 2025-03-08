@@ -1,3 +1,4 @@
+from encodings.punycode import segregate
 from turtle import Turtle, Screen
 
 
@@ -19,6 +20,9 @@ class Snake:
     def create_snake(self):
         for position in STARTING_POSITION:
             self.add_segment(position)
+
+    def extend(self):
+        self.add_segment(self.segments[-1].position())
 
     def add_segment(self, position):
         new_segment = Turtle(shape="square")
@@ -51,5 +55,11 @@ class Snake:
             self.head.setheading(RIGHT)
 
     def reset(self):
+        self.beyond_screen()
+        self.segments.clear()
         self.create_snake()
+        self.head = self.segments[0]
 
+    def beyond_screen(self):
+        for seg in self.segments:
+            seg.goto(1000, 1000)
